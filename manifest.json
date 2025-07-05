@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "Impulse Shield",
+  "version": "1.0",
+  "description": "Block impulse purchases and stay focused on your saving goals.",
+  "permissions": ["storage", "scripting", "tabs"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://www.amazon.com/*",
+        "*://www.instagram.com/*",
+        "*://www.facebook.com/marketplace/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

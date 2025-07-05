@@ -113,3 +113,59 @@ li::before {
     background-color: #8b8585;
     
 }
+
+.goal-cards {
+  list-style: none;
+  padding: 0;
+}
+
+.goal-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  transition: transform 0.2s;
+}
+
+.goal-card:hover {
+  transform: scale(1.01);
+}
+
+.goal-card h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+.goal-card p {
+  margin: 0.3rem 0;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.goal-card .goal-actions {
+  margin-top: 0.8rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.goal-card button {
+  padding: 0.3rem 0.6rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.goal-card button.complete-btn {
+  background: #4caf50;
+  color: white;
+}
+
+.goal-card button.remove-btn {
+  background: #f44336;
+  color: white;
+}
