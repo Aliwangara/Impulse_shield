@@ -15,7 +15,7 @@ In a world of one-click purchases and flash sales, many people fall into **emoti
 - 🔍 **Intercepts Shopping Websites** (Amazon, Jumia, Shein, etc.)
 - 🧠 **Displays Reflective Prompts** before proceeding to purchase
 - ⏳ **Countdown Timer** encourages mindful decision-making
-- 📈 **Spending History Tracker** (local storage)
+- 📈 **Spending History Tracker** 
 - 🎯 **Savings Goal Reminders** during shopping attempts
 - 🌐 **Customizable Popup UI** with saved goals and statistics
 
