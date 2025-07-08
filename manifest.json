@@ -5,7 +5,6 @@
   "description": "Block impulse buying and focus on savings goals.",
   "permissions": ["storage", "scripting", "tabs"],
   "action": {
-    "default_popup": "popup.html",
     "default_icon": "impulse.png"
   },
   "content_scripts": [

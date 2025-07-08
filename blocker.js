@@ -12,25 +12,33 @@ const blockedSites = [
 
 const currentSite = window.location.hostname;
 
-chrome.storage.sync.get({ blockedSites : defaultBlockedSites},(data)  => {
+chrome.storage.sync.get({ blockedSites:blockedSites},(data)  => {
 
     const blockedSites = data.blockedSites;
 
-    const isBlocked = blockedSites.some((site) =>
+    const isBlocked = blockedSites.some(site =>
         currentSite.includes(site)
     
     );
 
-    if(isBlocked){
-        showImpulsePopup();
-    }
+    if (isBlocked) {
+    showImpulsePopup();
 
-
+    
+    Array.from(document.body.children).forEach((child) => {
+      if (child.id !== 'impulse-popup') {
+        child.style.filter = 'blur(5px)';
+        child.style.pointerEvents = 'none';
+      }
+    });
+  }
 });
 
 function showImpulsePopup(){
+    let timer = 60;
 
     const div  = document.createElement("div");
+     div.id="impulse-popup"
 
   div.style.position = 'fixed';
   div.style.top = '20px';
@@ -47,15 +55,56 @@ function showImpulsePopup(){
 
      <strong>⚠️ Impulse Check!</strong><br>
     Are you sure you want to buy something right now?<br>
-    <button id="stay-focused" style="margin-top:10px;">I'm Saving</button>
+
+    <p>Redirecting in <span id="countdown">${timer}</span> seconds...</p>
+    <button id="close-it">No, take me back</button>
+    <button id="stay-here" style="margin-top:10px;">Stay here</button>
   `;
 
   document.body.appendChild(div)
 
- let stayFocused =  document.getElementById("stay-focused")
+  Array.from(document.body.children).forEach((child) => {
+    if (child.id !== 'impulse-popup') {
+      child.style.filter = 'blur(5px)';
+      child.style.pointerEvents = 'none';
+    }
+  });
 
- stayFocused.onclick = () => {
-    window.location.href = 'about:blank'
+  const countDownEl = div.querySelector('#countdown')
+
+  let interval = setInterval(()=>{
+    timer --;
+
+    countDownEl.textContent = timer;
+
+    if(timer === 0){
+        clearInterval(interval)
+        window.location.href = "https://www.google.com/"; 
+    }
+
+  }, 1000)
+
+
+
+  const closePage = document.querySelector('#close-it');
+
+  closePage.onclick = () => {
+    window.location.href = "https://www.google.com/";
+    
+  }
+
+ const stayHere =  document.querySelector("#stay-here")
+
+ stayHere.onclick = () => {
+
+    clearInterval(interval)
+   Array.from(document.body.children).forEach((child) => {
+    if (child.id !== 'impulse-popup') {
+      child.style.filter = '';
+      child.style.pointerEvents = '';
+    }
+  });
+    div.remove()
  }
 
 
