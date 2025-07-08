@@ -17,16 +17,14 @@ let target = [];
 console.log(savings, emojis, target)
 
 
- 
-
 
 
 renderItems()
 
 
-
-
 goalBtn.addEventListener('click', function(){
+
+    
 
     if(goalInput.value.trim() === "") return;
 
@@ -64,6 +62,36 @@ goalBtn.addEventListener('click', function(){
 function renderItems(){
 
     goalList.innerHTML = '';
+    goalsCompleted.innerHTML = '';
+
+    completedGoals = JSON.parse(localStorage.getItem("completedGoals")) || [];
+
+
+
+     if(completedGoals.length === 0){
+        goalsCompleted.innerHTML= `<li>You haven't completed any goals</li>`
+    }else {
+        completedGoals.forEach((goal, index) =>{
+            const li = document.createElement("li");
+            li.className = "goal-card";
+            li.innerHTML = `
+                            <h4>${goal.emoji} ${goal.name}</h4>
+                            <p>✅ Completed</p>
+                            ${goal.cost ? `<p>💰 Target: $${goal.cost}</p>` : ""}
+                            ${goal.deadline ? `<p>📅 Deadline: ${goal.deadline}</p>` : ""}
+
+                            <button class="remove-btn">Remove</button>
+            
+            `;
+            li.querySelector('.remove-btn').onclick = () => {
+            completedGoals.splice(index, 1);
+            localStorage.setItem('completedGoals', JSON.stringify(completedGoals));
+            renderItems(); // Refresh UI
+        };
+
+            goalsCompleted.appendChild(li)
+        })
+    }
      
 
     if(savings.length === 0){
@@ -96,8 +124,8 @@ function renderItems(){
 
             li.querySelector('.complete-btn').onclick = () =>{
 
-            saving.splice(index, 1)[0]
-            completedGoal.complete = true
+            const completedGoal =  savings.splice(index, 1)[0]
+            completedGoal.completed = true
             completedGoals.push(completedGoal)
 
             localStorage.setItem('savings', JSON.stringify(savings))
@@ -115,6 +143,8 @@ function renderItems(){
 
             savings.splice(index, 1)
 
+            localStorage.setItem('savings', JSON.stringify(savings));
+
             renderItems()
 
         }
@@ -124,6 +154,8 @@ function renderItems(){
 
         
     });
+
+   
 
     
 
