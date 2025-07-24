@@ -46,7 +46,7 @@ li{
 
 li::before {
   content: "•";
-  color: #4C6EF5; /* Blue bullet */
+  color: #4C6EF5; 
   position: absolute;
   left: -1rem;
   font-weight: bold;
