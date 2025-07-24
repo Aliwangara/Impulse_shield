@@ -12,7 +12,7 @@ In a world of one-click purchases and flash sales, many people fall into **emoti
 
 ## ✨ Features
 
-- 🔍 **Intercepts Shopping Websites** (Amazon, Jumia, Shein, etc.)
+- 🔍 **Intercepts Shopping Websites** (Amazon, Jumia, etc.)
 - 🧠 **Displays Reflective Prompts** before proceeding to purchase
 - ⏳ **Countdown Timer** encourages mindful decision-making
 - 📈 **Spending History Tracker** 
