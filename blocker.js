@@ -105,7 +105,18 @@ function showImpulsePopup(){
     }
   });
     div.remove()
+
  }
+
+
+ closePage.addEventListener('click', ()=>{
+    chrome.storage.sync.get(['avoided_count'], (data) =>{
+      const current = data.avoided_count || 0;
+      chrome.storage.sync.set({avoided_count : current+1}, ()=>{
+        window.location.href = "https://www.google.com/"
+      })
+    })
+ })
 
 
 
