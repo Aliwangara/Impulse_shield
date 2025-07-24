@@ -86,7 +86,7 @@ function renderItems(){
             li.querySelector('.remove-btn').onclick = () => {
             completedGoals.splice(index, 1);
             localStorage.setItem('completedGoals', JSON.stringify(completedGoals));
-            renderItems(); // Refresh UI
+            renderItems(); 
         };
 
             goalsCompleted.appendChild(li)
@@ -155,12 +155,20 @@ function renderItems(){
         
     });
 
-   
+  
 
     
 
 
     }
+
+ document.addEventListener('DOMContentLoaded', () => {
+  const countDisplay = document.getElementById('impulse-count');
+
+  chrome.storage.sync.get(['avoidedCount'], (data) => {
+    countDisplay.textContent = data.avoidedCount || 0;
+  });
+});
 
 
 
